@@ -33,6 +33,7 @@ static const char *const autostart[] = {
 	"slstatus",              NULL,
 	"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",              NULL,
 	"xfce4-power-manager",   NULL,
+	"clipmenud", NULL,
 	NULL /* terminate */
 };
 
@@ -83,15 +84,18 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *roficmd[] = { "rofi", "-show", "drun", NULL };
-/* static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf",  col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; */
+/* static const char *roficmd[] = { "rofi", "-show", "drun", NULL }; */
+static const char *dmenucmd[] = { "dmenu_run", "-l", "10", "-c", "-hp", "thunar,brave,spotify,discord,xfce4-power-manager,code,transmission-gtk" }; 
 static const char *termcmd[]  = { "st", NULL };
+static const char *clipcmd[]  = { "clipmenu", NULL };
+
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd } },
-/*  { MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } }, */
+/*	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd } }, */
+    { MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } }, 
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_p,      spawn,          {.v = clipcmd } }, 
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
@@ -135,6 +139,9 @@ static const Key keys[] = {
     { MODKEY,			XK_F1,	   spawn,	   {.v = (const char*[]){ "st", "-e", "surf", "-f", "http://suckless.org", NULL } } },
     { MODKEY,			XK_F2,	   spawn,	   {.v = (const char*[]){ "st", "-e", "surf", "-f", "https://www.debian.org/distrib/packages", NULL } } },
 	{ MODKEY,			XK_F3,	   spawn,	   {.v = (const char*[]){ "st", "-e", "newsboat", NULL } } },
+	{ MODKEY|ShiftMask,	XK_e,	   spawn,	   {.v = (const char*[]){ "./poweopt.sh", NULL } } },
+	{ MODKEY|ShiftMask,	XK_w,	   spawn,	   {.v = (const char*[]){ "./wallpapers.sh", NULL } } },
+	{ MODKEY|ShiftMask,	XK_k,	   spawn,	   {.v = (const char*[]){ "./processkiller.sh", NULL } } },
 
 
 
