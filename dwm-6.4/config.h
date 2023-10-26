@@ -32,7 +32,7 @@ static const char *const autostart[] = {
 	"nitrogen", "--restore", NULL,
 	"slstatus",              NULL,
 	"/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",              NULL,
-	"xfce4-power-manager",   NULL,
+	"xfce4-power-manager",   NULL, 
 	"clipmenud", NULL,
 	NULL /* terminate */
 };
@@ -134,14 +134,15 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY,                       XK_c,      spawn,          SHCMD("qalculate-gtk") },
 	{ MODKEY,                       XK_b,      spawn,          SHCMD("pavucontrol") },
-	{ MODKEY|ShiftMask,             XK_s,      spawn,          SHCMD("xfce4-screenshooter") },
+	{ MODKEY,                       XK_s,      spawn,          SHCMD("xfce4-screenshooter") },
 	{ MODKEY,			XK_n,	   spawn,	   {.v = (const char*[]){ "st", "-e", "nvim", "Notes", NULL } } },
     { MODKEY,			XK_F1,	   spawn,	   {.v = (const char*[]){ "st", "-e", "surf", "-f", "http://suckless.org", NULL } } },
     { MODKEY,			XK_F2,	   spawn,	   {.v = (const char*[]){ "st", "-e", "surf", "-f", "https://www.debian.org/distrib/packages", NULL } } },
 	{ MODKEY,			XK_F3,	   spawn,	   {.v = (const char*[]){ "st", "-e", "newsboat", NULL } } },
 	{ MODKEY|ShiftMask,	XK_e,	   spawn,	   {.v = (const char*[]){ "./poweopt.sh", NULL } } },
 	{ MODKEY|ShiftMask,	XK_w,	   spawn,	   {.v = (const char*[]){ "./wallpapers.sh", NULL } } },
-	{ MODKEY|ShiftMask,	XK_k,	   spawn,	   {.v = (const char*[]){ "./processkiller.sh", NULL } } },
+	{ MODKEY|ShiftMask,	XK_p,	   spawn,	   {.v = (const char*[]){ "./processkiller.sh", NULL } } },
+	{ MODKEY|ShiftMask,	XK_s,	   spawn,	   {.v = (const char*[]){ "./sleep.sh", NULL } } },
 
 
 
