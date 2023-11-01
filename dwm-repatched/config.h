@@ -7,12 +7,12 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "SauceCodePro Nerd Font:pixelsize=12:antialias=true:autohint=true:style=bold" };
+static const char *fonts[]          = { "SauceCodePro Nerd Font:pixelsize=12:antialias=true:autohint=true:style=SemiBold" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#000000"; /* podloga bara */
 static const char col_gray2[]       = "#1c1c1c"; /* neaktivni prozor */
-static const char col_gray3[]       = "#ececec"; /* neaktivni tag */
-static const char col_gray4[]       = "#f9f7f3"; /* naslov i aktivni tag tekst */
+static const char col_gray3[]       = "#d3d3d3"; /* neaktivni tag */
+static const char col_gray4[]       = "#d3d3d3"; /* naslov i aktivni tag tekst */
 static const char col_cyan[]        = "#6f1d1b"; /* aktivni naslov i tag */
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -21,23 +21,22 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "TTY", "WWW", "FMG", "MSC", "SOC", "6", "7", "8", "9" };
+static const char *tags[] = { "TTY", "WWW", "FMG", "MUS", "SOC", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",        NULL,       NULL,       0,            1,           0,          0,         -1 },
-	{ "Firefox",     NULL,       NULL,       1 << 8,       0,           0,          0,         -1 },
-	{ "imv",         NULL,       NULL,       0,            1,           0,          0,         -1 },
-	{ "mpv",         NULL,       NULL,       0,            1,           0,          0,         -1 },
-	{ "Qalculate-gtk", NULL,       NULL,       0,            1,           0,          0,         -1 },
-	{ "Pavucontrol", NULL,       NULL,       0,            1,           0,          0,         -1 },
-	{ "st",          NULL,       NULL,       0,            1,           1,          0,         -1 },
-	{ "Cherrytree",  NULL,       NULL,       0,            1,           0,          0,         -1 },
-	{ NULL,          NULL,   "Event Tester", 0,            0,           0,          1,         -1 }, /* xev */
+	/* class                  instance    title       tags mask     isfloating   isterminal  noswallow  monitor */
+	{ "Gimp",                 NULL,       NULL,       0,            1,           0,          0,         -1 },
+	{ "Firefox",              NULL,       NULL,       0,            0,           0,          0,         -1 },
+	{ "imv",                  NULL,       NULL,       0,            1,           0,          0,         -1 },
+	{ "mpv",                  NULL,       NULL,       0,            1,           0,          0,         -1 },
+	{ "Qalculate-gtk",        NULL,       NULL,       0,            1,           0,          0,         -1 },
+	{ "Pavucontrol",          NULL,       NULL,       0,            1,           0,          0,         -1 },
+	{ "st",                   NULL,       NULL,       0,            0,           1,          0,         -1 },
+	{ NULL,                   NULL,   "Event Tester", 0,            0,           0,          1,         -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -105,18 +104,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-	{ MODKEY,                       XK_c,      spawn,          SHCMD("qalculate-gtk") },
-	{ MODKEY,                       XK_b,      spawn,          SHCMD("pavucontrol") },
-	{ MODKEY,                       XK_s,      spawn,          SHCMD("xfce4-screenshooter") },
-	{ MODKEY,			XK_n,	   spawn,	   {.v = (const char*[]){ "st", "-e", "vim", "Notes", NULL } } },
-    { MODKEY,			XK_F1,	   spawn,	   {.v = (const char*[]){ "st", "-e", "surf", "-f", "http://suckless.org", NULL } } },
-    { MODKEY,			XK_F2,	   spawn,	   {.v = (const char*[]){ "st", "-e", "surf", "-f", "https://www.debian.org/distrib/packages", NULL } } },
-	{ MODKEY,			XK_F3,	   spawn,	   {.v = (const char*[]){ "st", "-e", "newsboat", NULL } } },
-	{ MODKEY|ShiftMask,	XK_e,	   spawn,	   {.v = (const char*[]){ "./poweopt.sh", NULL } } },
-	{ MODKEY|ShiftMask,	XK_w,	   spawn,	   {.v = (const char*[]){ "./wallpapers.sh", NULL } } },
-	{ MODKEY|ShiftMask,	XK_p,	   spawn,	   {.v = (const char*[]){ "./processkiller.sh", NULL } } },
-	{ MODKEY|ShiftMask,	XK_s,	   spawn,	   {.v = (const char*[]){ "./sleep.sh", NULL } } },
-
+	
 
 
 };
