@@ -64,7 +64,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-l", "10", "-c", "-hp", "thunar,brave,spotify,discord,xfce4-power-manager,code,transmission-gtk,midori" }; 
+static const char *dmenucmd[] = { "dmenu_run", "-l", "10", "-c", "-hp", "thunar,brave,spotify,vencord-desktop,xfce4-power-manager,code,transmission-gtk,midori" }; 
 static const char *termcmd[]  = { "st", NULL };
 static const char *clipcmd[]  = { "clipmenu", NULL };
 
