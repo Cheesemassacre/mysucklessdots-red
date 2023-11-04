@@ -5,7 +5,7 @@ super + e ; t
 	thunar
     
 super + e ; p ; r ; o
-	./processkiller.sh
+	./processkiller.sh &
 
 super + e ; s ; p
     spotify-launcher
@@ -35,10 +35,10 @@ super + n
     st -e vim Notes
 
 super + shift + e
-    ./poweopt.sh
+    ./poweopt.sh &
 
 super + e ; w ; a ; l
-    ./wallpapers.sh
+    ./wallpapers.sh &
 
 super + shift + s
-    ./sleep.sh
+    ./sleep.sh &
