@@ -93,68 +93,68 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
-  vim
-	wget
-	w3m
+	alacritty
+  brave
+	deluge-gtk
+	distrobox
 	dmenu
-	lxappearance
-  neofetch
-	neovim
-	dwm
-	gnome.gedit
-	firefox
 	dunst
-  fontconfig
-  freetype
-  vscodium
+	dwm
+	feh
+	fish
 	gcc
 	gh
 	git
+	gnome.gedit
 	gnugrep
 	gnumake
 	gparted
-	alacritty
 	libverto
-  luarocks
+	lxappearance
+	mate.engrampa
+	neovim
 	neovim
 	nfs-utils
 	ninja
 	nodejs
 	nomacs
+	pamixer
 	pavucontrol
-	feh
+	picom
+	podman
 	polkit_gnome
 	protonup-ng
 	ripgrep
 	rofi
-	sxhkd
+	spotify
 	stdenv
+	sxhkd
 	terminus-nerdfont
 	tldr
 	trash-cli
 	unzip
 	variety
+	w3m
+	wget
 	xclip
 	xdg-desktop-portal-gtk
 	xfce.thunar
+	xorg.xhost
+	xorg.xinit
+	xorg.xsetroot
+  discord
+  fontconfig
+  freetype
+  luarocks
+  neofetch
+  vim
+  vscodium
   xorg.libX11
   xorg.libX11.dev
   xorg.libxcb
   xorg.libXft
   xorg.libXinerama
-	xorg.xinit
   xorg.xinput
-	picom
-	podman
-	distrobox
-	xorg.xhost
-	deluge-gtk
-	mate.engrampa
-	fish
-	xorg.xsetroot
-	pamixer
-	spotify
-  discord
 	
 	
   ];
