@@ -63,7 +63,6 @@
   virtualisation.libvirtd.enable = true; 
   services.flatpak.enable = true;
   services.dbus.enable = true;
-  virtualisation.podman.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -97,7 +96,6 @@
     brave
     deluge-gtk
     discord
-    distrobox
     dmenu
     dunst
     dwm
@@ -126,7 +124,6 @@
     pamixer
     pavucontrol
     picom
-    podman
     polkit_gnome
     protonup-ng
     ripgrep
