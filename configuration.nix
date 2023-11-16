@@ -5,26 +5,19 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-                "openssl-1.1.1v"
-		"python-2.7.18.6"
-              ];
-
-
-
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./unstable.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
-  networking.hostName = "nixos"; 
-  networking.networkmanager.enable = true;  
+  # Network.
+  networking.hostName = "nixos"; # Define your hostname.
+  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Zagreb";
@@ -44,6 +37,7 @@
     LC_TIME = "hr_HR.UTF-8";
   };
   
+  # Keyboard.
   services.xserver = {
     layout = "hr";
     xkbVariant = "";
@@ -52,28 +46,33 @@
   # Configure console keymap
   console.keyMap = "croat";
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.windowManager.dwm.enable = true;
-  
   # Fish shell
   programs.fish.enable = true;
   
-
+  # Display Manager.
   services.xserver.displayManager = {
 	lightdm.enable = true;
   	autoLogin = {
 		enable = true;
-		user = "nixtest";
+		user = "marin";
 	};
   };
 
-  
- services.picom.enable = true;
-  # Enable sound with pipewire.
+  # Services/other.
+  services.picom.enable = true;
+  virtualisation.libvirtd.enable = true; 
+  services.flatpak.enable = true;
+  services.dbus.enable = true;
+  virtualisation.podman.enable = true;
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  services.xserver.enable = true;
+  services.xserver.windowManager.dwm.enable = true;
+  nixpkgs.config.allowUnfree = true;
+
+
+  # Enable sound with pipewire.
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -85,9 +84,9 @@
     };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.nixtest = {
+  users.users.marin = {
      isNormalUser = true;
-     description = "nixtest";
+     description = "marin";
      extraGroups = [ "wheel" "kvm" "input" "disk" "libvirtd" "networkmanager" ]; # Enable ‘sudo’ for the user.
   };
 
@@ -109,20 +108,23 @@
   freetype
   vscodium
 	gcc
+	gh
 	git
 	gnugrep
 	gnumake
 	gparted
 	alacritty
 	libverto
+  luarocks
 	neovim
+	nfs-utils
 	ninja
-	openssl
+	nodejs
+	nomacs
 	pavucontrol
 	feh
 	polkit_gnome
-	python3Full
-	python.pkgs.pip
+	protonup-ng
 	ripgrep
 	rofi
 	sxhkd
@@ -131,6 +133,7 @@
 	tldr
 	trash-cli
 	unzip
+	variety
 	xclip
 	xdg-desktop-portal-gtk
 	xfce.thunar
@@ -150,8 +153,13 @@
 	fish
 	xorg.xsetroot
 	pamixer
+	spotify
+  discord
+	
+	
   ];
 
+  # Dwm and dmenu compile.
   nixpkgs.overlays = [
 	(final: prev: {
 		dwm = prev.dwm.overrideAttrs (old: { src = /home/marin/dwm ;});
@@ -160,20 +168,13 @@
   ];
   
   
-	  
-virtualisation.libvirtd.enable = true; 
-
-  # enable flatpak support
-  services.flatpak.enable = true;
-  services.dbus.enable = true;
-  virtualisation.podman.enable = true;
+  # XDG portal.
   xdg.portal = {
     enable = true;
-    # wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  security.polkit.enable = true;
+  
+ # Polkit.
  systemd = {
   user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
@@ -191,16 +192,17 @@ virtualisation.libvirtd.enable = true;
    extraConfig = ''
      DefaultTimeoutStopSec=10s
    '';
-}; 
+ }; 
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
-  networking.enableIPv6 = false;
+  # networking.firewall.enable = false;
+  # networking.enableIPv6 = false;
 
-fonts = {
+ # Fonts.
+ fonts = {
     fonts = with pkgs; [
       noto-fonts
       noto-fonts-cjk
@@ -220,7 +222,7 @@ fonts = {
 	      sansSerif = [ "Noto Sans" "Source Han Sans" ];
       };
     };
-};
+ };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -228,7 +230,7 @@ fonts = {
   system.copySystemConfiguration = false;
   system.autoUpgrade.enable = false;  
   system.autoUpgrade.allowReboot = false; 
-  system.autoUpgrade.channel = "https://channels.nixos.org/nixos-23.05";
+  
   
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
