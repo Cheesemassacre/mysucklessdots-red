@@ -43,10 +43,10 @@
     xkbVariant = "";
   };
   
-  # Configure console keymap
+  # Configure console keymap.
   console.keyMap = "croat";
 
-  # Fish shell
+  # Fish shell.
   programs.fish.enable = true;
   
   # Display Manager.
@@ -174,25 +174,25 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
   
- # Polkit.
- systemd = {
-  user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-  };
-   extraConfig = ''
-     DefaultTimeoutStopSec=10s
-   '';
- }; 
+  # Polkit.
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = [ "graphical-session.target" ];
+      wants = [ "graphical-session.target" ];
+      after = [ "graphical-session.target" ];
+      serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+    };
+    extraConfig = ''
+      DefaultTimeoutStopSec=10s
+    '';
+  }; 
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -201,28 +201,28 @@
   # networking.firewall.enable = false;
   # networking.enableIPv6 = false;
 
- # Fonts.
- fonts = {
-    fonts = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      font-awesome
-      hack-font
-      source-han-sans
-      source-han-sans-japanese
-      source-han-serif-japanese
-      (nerdfonts.override { fonts = [ "Meslo" ]; })
-    ];
-    fontconfig = {
-      enable = true;
-      defaultFonts = {
-	      monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
-	      serif = [ "Noto Serif" "Source Han Serif" ];
-	      sansSerif = [ "Noto Sans" "Source Han Sans" ];
+  # Fonts.
+  fonts = {
+      fonts = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk
+        noto-fonts-emoji
+        font-awesome
+        hack-font
+        source-han-sans
+        source-han-sans-japanese
+        source-han-serif-japanese
+        (nerdfonts.override { fonts = [ "Meslo" ]; })
+      ];
+      fontconfig = {
+        enable = true;
+        defaultFonts = {
+          monospace = [ "Meslo LG M Regular Nerd Font Complete Mono" ];
+          serif = [ "Noto Serif" "Source Han Serif" ];
+          sansSerif = [ "Noto Sans" "Source Han Sans" ];
+        };
       };
-    };
- };
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
