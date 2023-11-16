@@ -104,28 +104,22 @@
     fontconfig
     freetype
     gcc
-    gh
     git
     gnome.gedit
     gnugrep
     gnumake
     gparted
     libverto
-    luarocks
     lxappearance
     mate.engrampa
     neofetch
     neovim
-    neovim
-    nfs-utils
     ninja
     nodejs
-    nomacs
     pamixer
     pavucontrol
     picom
     polkit_gnome
-    protonup-ng
     ripgrep
     rofi
     spotify
@@ -133,9 +127,7 @@
     sxhkd
     terminus-nerdfont
     tldr
-    trash-cli
     unzip
-    variety
     vim
     vscodium
     w3m
