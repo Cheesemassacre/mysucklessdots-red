@@ -59,7 +59,7 @@
   };
 
   # Services/other.
-  services.picom.enable = true;
+  services.picom.enable = false;
   virtualisation.libvirtd.enable = true; 
   services.flatpak.enable = true;
   services.dbus.enable = true;
