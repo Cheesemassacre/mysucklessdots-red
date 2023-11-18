@@ -12,11 +12,12 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.useOSProber = true;
 
   # Network.
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "nixospicek"; # Define your hostname.
   networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
@@ -69,6 +70,9 @@
   services.xserver.enable = true;
   services.xserver.windowManager.dwm.enable = true;
   nixpkgs.config.allowUnfree = true;
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.tumbler.enable = true; # Thumbnail support for images
+
 
 
   # Enable sound with pipewire.
@@ -93,9 +97,7 @@
   # $ nix search wget
    environment.systemPackages = with pkgs; [
     alacritty
-    brave
     deluge-gtk
-    discord
     dmenu
     dunst
     dwm
@@ -134,7 +136,6 @@
     wget
     xclip
     xdg-desktop-portal-gtk
-    xfce.thunar
     xorg.libX11
     xorg.libX11.dev
     xorg.libxcb
@@ -144,6 +145,13 @@
     xorg.xinit
     xorg.xinput
     xorg.xsetroot
+    barrier
+    xfce.xfce4-screenshooter
+    xfce.thunar
+    kitty
+    htop
+    psmisc
+    
 	
 	
   ];
@@ -153,6 +161,8 @@
 	(final: prev: {
 		dwm = prev.dwm.overrideAttrs (old: { src = /home/marin/dwm ;});
     dmenu = prev.dmenu.overrideAttrs (old: { src = /home/marin/dmenu ;});
+    # slstatus = prev.slstatus.overrideAttrs (old: { src = /home/marin/slstatus ;});
+
 	})
   ];
   
