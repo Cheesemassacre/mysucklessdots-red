@@ -23,6 +23,12 @@ static const char *colors[][3]      = {
 /* tagging */
 static const char *tags[] = { "TTY", "WWW", "FMG", "MUS", "SOC", "WS6", "WS7", "WS8", "WS9" };
 
+static const char *const autostart[] = {
+	/* "st", NULL, */
+	"bash", "-c", "~/.dwmstart.sh", NULL,
+	NULL /* terminate */
+};
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
